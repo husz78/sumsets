@@ -1,0 +1,1 @@
+/usr/bin/gcc -g -pthread CMakeFiles/nonrecursive.dir/main.c.o -o nonrecursive  ../common/libio.a ../common/liberr.a libstack.a

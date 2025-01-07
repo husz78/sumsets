@@ -1,0 +1,16 @@
+/home/husz/PW/ab12345/build/CMakeFiles/edit_cache.dir
+/home/husz/PW/ab12345/build/CMakeFiles/rebuild_cache.dir
+/home/husz/PW/ab12345/build/common/CMakeFiles/err.dir
+/home/husz/PW/ab12345/build/common/CMakeFiles/io.dir
+/home/husz/PW/ab12345/build/common/CMakeFiles/edit_cache.dir
+/home/husz/PW/ab12345/build/common/CMakeFiles/rebuild_cache.dir
+/home/husz/PW/ab12345/build/reference/CMakeFiles/reference.dir
+/home/husz/PW/ab12345/build/reference/CMakeFiles/edit_cache.dir
+/home/husz/PW/ab12345/build/reference/CMakeFiles/rebuild_cache.dir
+/home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/nonrecursive.dir
+/home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/stack.dir
+/home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/edit_cache.dir
+/home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/rebuild_cache.dir
+/home/husz/PW/ab12345/build/parallel/CMakeFiles/parallel.dir
+/home/husz/PW/ab12345/build/parallel/CMakeFiles/edit_cache.dir
+/home/husz/PW/ab12345/build/parallel/CMakeFiles/rebuild_cache.dir
