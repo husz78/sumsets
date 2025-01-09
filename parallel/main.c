@@ -6,6 +6,7 @@
 #include "common/sumset.h"
 #include "common/err.h"
 #include "lock_free_stack.h"
+#include "shared_pointer.h"
 
 #define NOWORK_CHECK 1000 // Number of solves that thread will make until the next check
 // for possiblity of waiving some computations and pushing them to the stack.
@@ -15,14 +16,25 @@ atomic_int occupied = 0; // Number of threads that are executing solve atm.
 _Atomic Stack stack = {0, NULL};
 int n_threads; // Number of helper threads that are used to compute the result.
 
+// Waive the computation of the current sumsets and push it to the shared stack.
+void waive_computation(Sumset* a, Sumset* b, int i) {
+    Sumset* a_with_i = malloc(sizeof(Sumset));
+    sumset_add(a_with_i, a, i);
+    push(&stack, a, b);
+}
+
 void solve(Sumset* a, Sumset* b, int check, int d) {
     if (a->sum > b->sum)
         return solve(b, a, ++check, d);
     
     if (is_sumset_intersection_trivial(a, b)) {
         for (size_t i = a->last; i <= d; ++i) {
-            Sumset a_with_i;
-            sumset_add(&a_with_i, a, i);
+            if (atomic_load(&occupied) < n_threads) waive_computation(a, b, i);
+            else {
+                Sumset a_with_i;
+                sumset_add(&a_with_i, a, i);
+            }
+            
             // Finish this.
         }
     }
