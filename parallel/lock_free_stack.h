@@ -3,8 +3,8 @@
 #include "common/sumset.h"
 
 typedef struct Pair {
-    Sumset* a;
-    Sumset* b;
+    Shared_ptr* a;
+    Shared_ptr* b;
 } Pair;
 
 typedef struct Node {
@@ -18,7 +18,7 @@ typedef struct {
 } Stack;
 
 // Pushes both Sumsets on the stack.
-void push(_Atomic Stack* stack, Sumset* a, Sumset* b);
+void push(_Atomic Stack* stack, Shared_ptr* a, Shared_ptr* b);
 
 // Pops Pair from the stack where Pair->a and Pair->b are both pointers to Sumset-s.
 // Returns NULL if the stack is empty

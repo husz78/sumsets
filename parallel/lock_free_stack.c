@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdatomic.h>
+
 #include "lock_free_stack.h"
+#include "shared_pointer.h"
 
 // const int counter = 1000000;
 
-void push(_Atomic Stack* stack, Sumset* a, Sumset* b) {
+void push(_Atomic Stack* stack, Shared_ptr* a, Shared_ptr* b) {
     Stack next, prev;
 
     Node* new_node = malloc(sizeof(Node));

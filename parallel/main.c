@@ -10,67 +10,94 @@
 
 #define NOWORK_CHECK 1000 // Number of solves that thread will make until the next check
 // for possiblity of waiving some computations and pushing them to the stack.
+#define NOACTIVE_CHECK 10000 // How often a thread will check if it can end.
 
-pthread_t* threads; // Array of threads.
+pthread_mutex_t mutex; // Mutex for best solution.
 atomic_int occupied = 0; // Number of threads that are executing solve atm.
 _Atomic Stack stack = {0, NULL};
 int n_threads; // Number of helper threads that are used to compute the result.
+Solution best_solution;
+InputData input_data;
 
-// Waive the computation of the current sumsets and push it to the shared stack.
-void waive_computation(Sumset* a, Sumset* b, int i) {
-    Sumset* a_with_i = malloc(sizeof(Sumset));
-    sumset_add(a_with_i, a, i);
-    push(&stack, a, b);
-}
 
-void solve(Sumset* a, Sumset* b, int check, int d) {
-    if (a->sum > b->sum)
-        return solve(b, a, ++check, d);
+
+void solve(Shared_ptr* a, Shared_ptr* b, int* check, const int* d) {
+    if (a->s->sum > b->s->sum)
+        return solve(b, a, ++(*check), d);
     
     if (is_sumset_intersection_trivial(a, b)) {
-        for (size_t i = a->last; i <= d; ++i) {
-            if (atomic_load(&occupied) < n_threads) waive_computation(a, b, i);
-            else {
-                Sumset a_with_i;
-                sumset_add(&a_with_i, a, i);
+        for (size_t i = a->s->last; i <= *d; ++i) {
+            if (!does_sumset_contain(b->s, i)) {
+                Sumset* a_with_i = malloc(sizeof(Sumset));
+                sumset_add(a_with_i, a->s, i);
+                Shared_ptr* a_i;
+                init_ptr(a_i, a_with_i);
+                link_next(a, a_i);
+                if (*check % NOWORK_CHECK == 0 && atomic_load(&occupied) < n_threads) 
+                    push(&stack, a_i, b);
+                else {
+                    // TODO
+                    solve(a_i, b, ++(*check), d);
+                }
             }
-            
-            // Finish this.
         }
     }
+    else if ((a->s->sum == b->s->sum) && (get_sumset_intersection_size(a->s, b->s) == 2)) {
+        ASSERT_ZERO(pthread_mutex_lock(&mutex));
+        if (b->s->sum > best_solution.sum) 
+            solution_build(&best_solution, &input_data, a->s, b->s);
+        ASSERT_ZERO(pthread_mutex_unlock(&mutex));
+    }
+    
+    decrease_count(a);
+    decrease_count(b);
 }
 
 void* start_thread(void* args) {
-    int d = *(int*)args;
+    const int* d = (int*)args;
+    int check = 1;
     while (true) {
         Pair* pair = pop(&stack);
         if (pair) {
             atomic_fetch_add(&occupied, 1);
             solve(pair->a, pair->b, 0, d);
-            free(pair);
             atomic_fetch_sub(&occupied, 1);
         }
+        // Add finishing threads
+        if (check % NOACTIVE_CHECK == 0 && atomic_load(&occupied) == 0) return NULL;
     }
 }
 
 int main()
 {
-    InputData input_data;
     input_data_read(&input_data);
     // input_data_init(&input_data, 8, 10, (int[]){0}, (int[]){1, 0});
+
+    pthread_t* threads; // Array of threads.
     n_threads = input_data.t;
-    push(&stack, &input_data.a_start, &input_data.b_start); 
+    Shared_ptr* a; Shared_ptr* b;
+
+    init_ptr(a, &input_data.a_start);
+    init_ptr(b, &input_data.b_start);
+    atomic_store(&a->count, 1);
+    atomic_store(&b->count, 1);
+    push(&stack, a, b); 
+
+    solution_init(&best_solution);
+    ASSERT_ZERO(pthread_mutex_init(&mutex, NULL));
 
     threads = malloc(sizeof(pthread_t) * n_threads);
     for (int i = 0; i < n_threads; i++) {
         ASSERT_ZERO(pthread_create(&threads[i], NULL, start_thread, (void*)input_data.d));
     }
 
-    Solution best_solution;
-    solution_init(&best_solution);
-
-    // ...
-
+    
+    for (int i = 0; i < n_threads; i++) {
+        ASSERT_ZERO(pthread_join(threads[i], NULL));
+    }
     solution_print(&best_solution);
+    free(a);
+    free(b);
+    ASSERT_ZERO(pthread_mutex_destroy(&mutex));
     return 0;
 }
