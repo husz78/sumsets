@@ -45,10 +45,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/1435/bin/cmake
+CMAKE_COMMAND = /snap/cmake/1437/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/1435/bin/cmake -E rm -f
+RM = /snap/cmake/1437/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -139,10 +139,14 @@ nonrecursive/clean: nonrecursive/CMakeFiles/stack.dir/clean
 
 # Recursive "all" directory target.
 parallel/all: parallel/CMakeFiles/parallel.dir/all
+parallel/all: parallel/CMakeFiles/lock_free_stack.dir/all
+parallel/all: parallel/CMakeFiles/shared_pointer.dir/all
 .PHONY : parallel/all
 
 # Recursive "codegen" directory target.
 parallel/codegen: parallel/CMakeFiles/parallel.dir/codegen
+parallel/codegen: parallel/CMakeFiles/lock_free_stack.dir/codegen
+parallel/codegen: parallel/CMakeFiles/shared_pointer.dir/codegen
 .PHONY : parallel/codegen
 
 # Recursive "preinstall" directory target.
@@ -151,6 +155,8 @@ parallel/preinstall:
 
 # Recursive "clean" directory target.
 parallel/clean: parallel/CMakeFiles/parallel.dir/clean
+parallel/clean: parallel/CMakeFiles/lock_free_stack.dir/clean
+parallel/clean: parallel/CMakeFiles/shared_pointer.dir/clean
 .PHONY : parallel/clean
 
 #=============================================================================
@@ -244,7 +250,7 @@ reference/CMakeFiles/reference.dir/all: common/CMakeFiles/err.dir/all
 reference/CMakeFiles/reference.dir/all: common/CMakeFiles/io.dir/all
 	$(MAKE) $(MAKESILENT) -f reference/CMakeFiles/reference.dir/build.make reference/CMakeFiles/reference.dir/depend
 	$(MAKE) $(MAKESILENT) -f reference/CMakeFiles/reference.dir/build.make reference/CMakeFiles/reference.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=9,10 "Built target reference"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=11,12 "Built target reference"
 .PHONY : reference/CMakeFiles/reference.dir/all
 
 # Build rule for subdir invocation for target.
@@ -261,7 +267,7 @@ reference: reference/CMakeFiles/reference.dir/rule
 # codegen rule for target.
 reference/CMakeFiles/reference.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f reference/CMakeFiles/reference.dir/build.make reference/CMakeFiles/reference.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=9,10 "Finished codegen for target reference"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=11,12 "Finished codegen for target reference"
 .PHONY : reference/CMakeFiles/reference.dir/codegen
 
 # clean rule for target.
@@ -278,7 +284,7 @@ nonrecursive/CMakeFiles/nonrecursive.dir/all: common/CMakeFiles/io.dir/all
 nonrecursive/CMakeFiles/nonrecursive.dir/all: nonrecursive/CMakeFiles/stack.dir/all
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/depend
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=5,6 "Built target nonrecursive"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=7,8 "Built target nonrecursive"
 .PHONY : nonrecursive/CMakeFiles/nonrecursive.dir/all
 
 # Build rule for subdir invocation for target.
@@ -295,7 +301,7 @@ nonrecursive: nonrecursive/CMakeFiles/nonrecursive.dir/rule
 # codegen rule for target.
 nonrecursive/CMakeFiles/nonrecursive.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=5,6 "Finished codegen for target nonrecursive"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=7,8 "Finished codegen for target nonrecursive"
 .PHONY : nonrecursive/CMakeFiles/nonrecursive.dir/codegen
 
 # clean rule for target.
@@ -310,7 +316,7 @@ nonrecursive/CMakeFiles/nonrecursive.dir/clean:
 nonrecursive/CMakeFiles/stack.dir/all:
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/depend
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=11,12 "Built target stack"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=15,16 "Built target stack"
 .PHONY : nonrecursive/CMakeFiles/stack.dir/all
 
 # Build rule for subdir invocation for target.
@@ -327,7 +333,7 @@ stack: nonrecursive/CMakeFiles/stack.dir/rule
 # codegen rule for target.
 nonrecursive/CMakeFiles/stack.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=11,12 "Finished codegen for target stack"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=15,16 "Finished codegen for target stack"
 .PHONY : nonrecursive/CMakeFiles/stack.dir/codegen
 
 # clean rule for target.
@@ -341,14 +347,16 @@ nonrecursive/CMakeFiles/stack.dir/clean:
 # All Build rule for target.
 parallel/CMakeFiles/parallel.dir/all: common/CMakeFiles/err.dir/all
 parallel/CMakeFiles/parallel.dir/all: common/CMakeFiles/io.dir/all
+parallel/CMakeFiles/parallel.dir/all: parallel/CMakeFiles/lock_free_stack.dir/all
+parallel/CMakeFiles/parallel.dir/all: parallel/CMakeFiles/shared_pointer.dir/all
 	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/depend
 	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=7,8 "Built target parallel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=9,10 "Built target parallel"
 .PHONY : parallel/CMakeFiles/parallel.dir/all
 
 # Build rule for subdir invocation for target.
 parallel/CMakeFiles/parallel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 parallel/CMakeFiles/parallel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 0
 .PHONY : parallel/CMakeFiles/parallel.dir/rule
@@ -360,13 +368,77 @@ parallel: parallel/CMakeFiles/parallel.dir/rule
 # codegen rule for target.
 parallel/CMakeFiles/parallel.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=7,8 "Finished codegen for target parallel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=9,10 "Finished codegen for target parallel"
 .PHONY : parallel/CMakeFiles/parallel.dir/codegen
 
 # clean rule for target.
 parallel/CMakeFiles/parallel.dir/clean:
 	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/clean
 .PHONY : parallel/CMakeFiles/parallel.dir/clean
+
+#=============================================================================
+# Target rules for target parallel/CMakeFiles/lock_free_stack.dir
+
+# All Build rule for target.
+parallel/CMakeFiles/lock_free_stack.dir/all:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/depend
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=5,6 "Built target lock_free_stack"
+.PHONY : parallel/CMakeFiles/lock_free_stack.dir/all
+
+# Build rule for subdir invocation for target.
+parallel/CMakeFiles/lock_free_stack.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 parallel/CMakeFiles/lock_free_stack.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 0
+.PHONY : parallel/CMakeFiles/lock_free_stack.dir/rule
+
+# Convenience name for target.
+lock_free_stack: parallel/CMakeFiles/lock_free_stack.dir/rule
+.PHONY : lock_free_stack
+
+# codegen rule for target.
+parallel/CMakeFiles/lock_free_stack.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=5,6 "Finished codegen for target lock_free_stack"
+.PHONY : parallel/CMakeFiles/lock_free_stack.dir/codegen
+
+# clean rule for target.
+parallel/CMakeFiles/lock_free_stack.dir/clean:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/clean
+.PHONY : parallel/CMakeFiles/lock_free_stack.dir/clean
+
+#=============================================================================
+# Target rules for target parallel/CMakeFiles/shared_pointer.dir
+
+# All Build rule for target.
+parallel/CMakeFiles/shared_pointer.dir/all:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/depend
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=13,14 "Built target shared_pointer"
+.PHONY : parallel/CMakeFiles/shared_pointer.dir/all
+
+# Build rule for subdir invocation for target.
+parallel/CMakeFiles/shared_pointer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 parallel/CMakeFiles/shared_pointer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 0
+.PHONY : parallel/CMakeFiles/shared_pointer.dir/rule
+
+# Convenience name for target.
+shared_pointer: parallel/CMakeFiles/shared_pointer.dir/rule
+.PHONY : shared_pointer
+
+# codegen rule for target.
+parallel/CMakeFiles/shared_pointer.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=13,14 "Finished codegen for target shared_pointer"
+.PHONY : parallel/CMakeFiles/shared_pointer.dir/codegen
+
+# clean rule for target.
+parallel/CMakeFiles/shared_pointer.dir/clean:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/clean
+.PHONY : parallel/CMakeFiles/shared_pointer.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

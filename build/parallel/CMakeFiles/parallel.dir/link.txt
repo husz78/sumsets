@@ -1,1 +1,1 @@
-/usr/bin/gcc -g -pthread CMakeFiles/parallel.dir/main.c.o -o parallel  ../common/libio.a ../common/liberr.a -latomic
+/usr/bin/gcc -g -pthread CMakeFiles/parallel.dir/main.c.o -o parallel  ../common/libio.a ../common/liberr.a liblock_free_stack.a libshared_pointer.a -latomic

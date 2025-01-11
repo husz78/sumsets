@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/1435/bin/cmake
+CMAKE_COMMAND = /snap/cmake/1437/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/1435/bin/cmake -E rm -f
+RM = /snap/cmake/1437/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -97,6 +97,8 @@ parallel/parallel: parallel/CMakeFiles/parallel.dir/main.c.o
 parallel/parallel: parallel/CMakeFiles/parallel.dir/build.make
 parallel/parallel: common/libio.a
 parallel/parallel: common/liberr.a
+parallel/parallel: parallel/liblock_free_stack.a
+parallel/parallel: parallel/libshared_pointer.a
 parallel/parallel: parallel/CMakeFiles/parallel.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable parallel"
 	cd /home/husz/PW/ab12345/build/parallel && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/parallel.dir/link.txt --verbose=$(VERBOSE)

@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/1435/bin/cmake
+CMAKE_COMMAND = /snap/cmake/1437/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/1435/bin/cmake -E rm -f
+RM = /snap/cmake/1437/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/snap/cmake/1435/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/cmake/1437/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -130,6 +130,58 @@ parallel/fast:
 	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/build
 .PHONY : parallel/fast
 
+# Convenience name for target.
+parallel/CMakeFiles/lock_free_stack.dir/rule:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 parallel/CMakeFiles/lock_free_stack.dir/rule
+.PHONY : parallel/CMakeFiles/lock_free_stack.dir/rule
+
+# Convenience name for target.
+lock_free_stack: parallel/CMakeFiles/lock_free_stack.dir/rule
+.PHONY : lock_free_stack
+
+# fast build rule for target.
+lock_free_stack/fast:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/build
+.PHONY : lock_free_stack/fast
+
+# Convenience name for target.
+parallel/CMakeFiles/shared_pointer.dir/rule:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 parallel/CMakeFiles/shared_pointer.dir/rule
+.PHONY : parallel/CMakeFiles/shared_pointer.dir/rule
+
+# Convenience name for target.
+shared_pointer: parallel/CMakeFiles/shared_pointer.dir/rule
+.PHONY : shared_pointer
+
+# fast build rule for target.
+shared_pointer/fast:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/build
+.PHONY : shared_pointer/fast
+
+lock_free_stack.o: lock_free_stack.c.o
+.PHONY : lock_free_stack.o
+
+# target to build an object file
+lock_free_stack.c.o:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/lock_free_stack.c.o
+.PHONY : lock_free_stack.c.o
+
+lock_free_stack.i: lock_free_stack.c.i
+.PHONY : lock_free_stack.i
+
+# target to preprocess a source file
+lock_free_stack.c.i:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/lock_free_stack.c.i
+.PHONY : lock_free_stack.c.i
+
+lock_free_stack.s: lock_free_stack.c.s
+.PHONY : lock_free_stack.s
+
+# target to generate assembly for a file
+lock_free_stack.c.s:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/lock_free_stack.c.s
+.PHONY : lock_free_stack.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -154,6 +206,30 @@ main.c.s:
 	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/main.c.s
 .PHONY : main.c.s
 
+shared_pointer.o: shared_pointer.c.o
+.PHONY : shared_pointer.o
+
+# target to build an object file
+shared_pointer.c.o:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/shared_pointer.c.o
+.PHONY : shared_pointer.c.o
+
+shared_pointer.i: shared_pointer.c.i
+.PHONY : shared_pointer.i
+
+# target to preprocess a source file
+shared_pointer.c.i:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/shared_pointer.c.i
+.PHONY : shared_pointer.c.i
+
+shared_pointer.s: shared_pointer.c.s
+.PHONY : shared_pointer.s
+
+# target to generate assembly for a file
+shared_pointer.c.s:
+	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/shared_pointer.c.s
+.PHONY : shared_pointer.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,10 +238,18 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... lock_free_stack"
 	@echo "... parallel"
+	@echo "... shared_pointer"
+	@echo "... lock_free_stack.o"
+	@echo "... lock_free_stack.i"
+	@echo "... lock_free_stack.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... shared_pointer.o"
+	@echo "... shared_pointer.i"
+	@echo "... shared_pointer.s"
 .PHONY : help
 
 

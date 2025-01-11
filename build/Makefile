@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/1435/bin/cmake
+CMAKE_COMMAND = /snap/cmake/1437/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/1435/bin/cmake -E rm -f
+RM = /snap/cmake/1437/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/snap/cmake/1435/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/cmake/1437/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -194,6 +194,32 @@ parallel/fast:
 	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/parallel.dir/build.make parallel/CMakeFiles/parallel.dir/build
 .PHONY : parallel/fast
 
+#=============================================================================
+# Target rules for targets named lock_free_stack
+
+# Build rule for target.
+lock_free_stack: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lock_free_stack
+.PHONY : lock_free_stack
+
+# fast build rule for target.
+lock_free_stack/fast:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/lock_free_stack.dir/build.make parallel/CMakeFiles/lock_free_stack.dir/build
+.PHONY : lock_free_stack/fast
+
+#=============================================================================
+# Target rules for targets named shared_pointer
+
+# Build rule for target.
+shared_pointer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 shared_pointer
+.PHONY : shared_pointer
+
+# fast build rule for target.
+shared_pointer/fast:
+	$(MAKE) $(MAKESILENT) -f parallel/CMakeFiles/shared_pointer.dir/build.make parallel/CMakeFiles/shared_pointer.dir/build
+.PHONY : shared_pointer/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -204,9 +230,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... err"
 	@echo "... io"
+	@echo "... lock_free_stack"
 	@echo "... nonrecursive"
 	@echo "... parallel"
 	@echo "... reference"
+	@echo "... shared_pointer"
 	@echo "... stack"
 .PHONY : help
 

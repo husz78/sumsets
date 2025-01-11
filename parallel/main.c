@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <pthread.h>
 #include <stdatomic.h>
+#include <stdlib.h>
 
 #include "common/io.h"
 #include "common/sumset.h"
@@ -22,22 +23,31 @@ InputData input_data;
 
 
 void solve(Shared_ptr* a, Shared_ptr* b, int* check, const int* d) {
-    if (a->s->sum > b->s->sum)
-        return solve(b, a, ++(*check), d);
+    if (a->s->sum > b->s->sum) {
+        (*check)++;
+        return solve(b, a, check, d);
+    }
+       
     
-    if (is_sumset_intersection_trivial(a, b)) {
+    if (is_sumset_intersection_trivial(a->s, b->s)) {
         for (size_t i = a->s->last; i <= *d; ++i) {
             if (!does_sumset_contain(b->s, i)) {
                 Sumset* a_with_i = malloc(sizeof(Sumset));
+                if (!a_with_i) exit(1);
+
                 sumset_add(a_with_i, a->s, i);
-                Shared_ptr* a_i;
+                Shared_ptr* a_i = malloc(sizeof(Shared_ptr));
+                if (!a_i) exit(1);
                 init_ptr(a_i, a_with_i);
-                link_next(a, a_i);
-                if (*check % NOWORK_CHECK == 0 && atomic_load(&occupied) < n_threads) 
+
+                if (*check % NOWORK_CHECK == 0 && atomic_load(&occupied) < n_threads) {
+                    // atomic_fetch_add(&a_i->count, 1);
+                    atomic_fetch_add(&b->count, 1);
                     push(&stack, a_i, b);
+                }
                 else {
-                    // TODO
-                    solve(a_i, b, ++(*check), d);
+                    (*check)++;
+                    solve(a_i, b, check, d);
                 }
             }
         }
@@ -49,38 +59,40 @@ void solve(Shared_ptr* a, Shared_ptr* b, int* check, const int* d) {
         ASSERT_ZERO(pthread_mutex_unlock(&mutex));
     }
     
-    decrease_count(a);
-    decrease_count(b);
 }
 
 void* start_thread(void* args) {
     const int* d = (int*)args;
     int check = 1;
+    int no_work_check = 0;
     while (true) {
         Pair* pair = pop(&stack);
         if (pair) {
             atomic_fetch_add(&occupied, 1);
-            solve(pair->a, pair->b, 0, d);
+            solve(pair->a, pair->b, &no_work_check, d);
+            decrease_count(pair->a);
+            decrease_count(pair->b);
             atomic_fetch_sub(&occupied, 1);
         }
         // Add finishing threads
         if (check % NOACTIVE_CHECK == 0 && atomic_load(&occupied) == 0) return NULL;
+        check++;
     }
 }
 
 int main()
 {
-    input_data_read(&input_data);
-    // input_data_init(&input_data, 8, 10, (int[]){0}, (int[]){1, 0});
+    // input_data_read(&input_data);
+    input_data_init(&input_data, 8, 20, (int[]){0}, (int[]){1, 0});
 
     pthread_t* threads; // Array of threads.
     n_threads = input_data.t;
-    Shared_ptr* a; Shared_ptr* b;
+    Shared_ptr* a = malloc(sizeof(Shared_ptr)); Shared_ptr* b = malloc(sizeof(Shared_ptr));
 
     init_ptr(a, &input_data.a_start);
     init_ptr(b, &input_data.b_start);
-    atomic_store(&a->count, 1);
-    atomic_store(&b->count, 1);
+    atomic_store(&a->count, input_data.d);
+    atomic_store(&b->count, input_data.d);
     push(&stack, a, b); 
 
     solution_init(&best_solution);
@@ -88,7 +100,7 @@ int main()
 
     threads = malloc(sizeof(pthread_t) * n_threads);
     for (int i = 0; i < n_threads; i++) {
-        ASSERT_ZERO(pthread_create(&threads[i], NULL, start_thread, (void*)input_data.d));
+        ASSERT_ZERO(pthread_create(&threads[i], NULL, start_thread, &input_data.d));
     }
 
     

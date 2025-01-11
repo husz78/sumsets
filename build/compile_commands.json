@@ -31,6 +31,18 @@
 },
 {
   "directory": "/home/husz/PW/ab12345/build/parallel",
+  "command": "/usr/bin/gcc  -I/home/husz/PW/ab12345 -g -std=gnu17 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-uninitialized -Wno-unused-function -Werror -pthread -o CMakeFiles/lock_free_stack.dir/lock_free_stack.c.o -c /home/husz/PW/ab12345/parallel/lock_free_stack.c",
+  "file": "/home/husz/PW/ab12345/parallel/lock_free_stack.c",
+  "output": "parallel/CMakeFiles/lock_free_stack.dir/lock_free_stack.c.o"
+},
+{
+  "directory": "/home/husz/PW/ab12345/build/parallel",
+  "command": "/usr/bin/gcc  -I/home/husz/PW/ab12345 -g -std=gnu17 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-uninitialized -Wno-unused-function -Werror -pthread -o CMakeFiles/shared_pointer.dir/shared_pointer.c.o -c /home/husz/PW/ab12345/parallel/shared_pointer.c",
+  "file": "/home/husz/PW/ab12345/parallel/shared_pointer.c",
+  "output": "parallel/CMakeFiles/shared_pointer.dir/shared_pointer.c.o"
+},
+{
+  "directory": "/home/husz/PW/ab12345/build/parallel",
   "command": "/usr/bin/gcc  -I/home/husz/PW/ab12345 -g -std=gnu17 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-uninitialized -Wno-unused-function -Werror -pthread -o CMakeFiles/parallel.dir/main.c.o -c /home/husz/PW/ab12345/parallel/main.c",
   "file": "/home/husz/PW/ab12345/parallel/main.c",
   "output": "parallel/CMakeFiles/parallel.dir/main.c.o"

@@ -12,5 +12,7 @@
 /home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/edit_cache.dir
 /home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/rebuild_cache.dir
 /home/husz/PW/ab12345/build/parallel/CMakeFiles/parallel.dir
+/home/husz/PW/ab12345/build/parallel/CMakeFiles/lock_free_stack.dir
+/home/husz/PW/ab12345/build/parallel/CMakeFiles/shared_pointer.dir
 /home/husz/PW/ab12345/build/parallel/CMakeFiles/edit_cache.dir
 /home/husz/PW/ab12345/build/parallel/CMakeFiles/rebuild_cache.dir

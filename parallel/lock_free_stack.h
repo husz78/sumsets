@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common/sumset.h"
+#include "shared_pointer.h"
 
 typedef struct Pair {
     Shared_ptr* a;
@@ -9,7 +10,7 @@ typedef struct Pair {
 
 typedef struct Node {
     Pair* data;
-    Node* next;
+    struct Node* next;
 } Node;
 
 typedef struct {
