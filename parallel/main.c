@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <stdatomic.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "common/io.h"
 #include "common/sumset.h"
@@ -15,12 +16,12 @@
 
 pthread_mutex_t mutex; // Mutex for best solution.
 atomic_int occupied = 0; // Number of threads that are executing solve atm.
-_Atomic Stack stack = {0, NULL};
+Stack stack;
 int n_threads; // Number of helper threads that are used to compute the result.
 Solution best_solution;
 InputData input_data;
-
-
+struct timespec ts;
+    
 
 void solve(Shared_ptr* a, Shared_ptr* b, int* check, const int* d) {
     if (a->s->sum > b->s->sum) {
@@ -66,7 +67,10 @@ void* start_thread(void* args) {
     int check = 1;
     int no_work_check = 0;
     while (true) {
-        Pair* pair = pop(&stack);
+        // Pair* p = atomic_load(&stack).head->data;
+        // printf("%p", p);
+        Pair* pair;
+        pop(&stack, &pair);
         if (pair) {
             atomic_fetch_add(&occupied, 1);
             solve(pair->a, pair->b, &no_work_check, d);
@@ -80,15 +84,17 @@ void* start_thread(void* args) {
     }
 }
 
+
+
 int main()
 {
     // input_data_read(&input_data);
-    input_data_init(&input_data, 8, 20, (int[]){0}, (int[]){1, 0});
+    input_data_init(&input_data, 8, 10, (int[]){0}, (int[]){1, 0});
 
     pthread_t* threads; // Array of threads.
     n_threads = input_data.t;
     Shared_ptr* a = malloc(sizeof(Shared_ptr)); Shared_ptr* b = malloc(sizeof(Shared_ptr));
-
+    stack_init(&stack);
     init_ptr(a, &input_data.a_start);
     init_ptr(b, &input_data.b_start);
     atomic_store(&a->count, input_data.d);
@@ -111,5 +117,6 @@ int main()
     free(a);
     free(b);
     ASSERT_ZERO(pthread_mutex_destroy(&mutex));
+    stack_destroy(&stack);
     return 0;
 }

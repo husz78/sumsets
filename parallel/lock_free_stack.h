@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdbool.h>
+#include <pthread.h>
 #include "common/sumset.h"
 #include "shared_pointer.h"
 
@@ -14,13 +16,12 @@ typedef struct Node {
 } Node;
 
 typedef struct {
-    int tag; 
     Node* head;
+    pthread_mutex_t mutex;
+    pthread_cond_t cond;
 } Stack;
 
-// Pushes both Sumsets on the stack.
-void push(_Atomic Stack* stack, Shared_ptr* a, Shared_ptr* b);
-
-// Pops Pair from the stack where Pair->a and Pair->b are both pointers to Sumset-s.
-// Returns NULL if the stack is empty
-Pair* pop(_Atomic Stack* stack);
+void stack_init(Stack* stack);
+void stack_destroy(Stack* stack);
+void push(Stack* stack, Shared_ptr* a, Shared_ptr* b);
+void pop(Stack* stack, Pair** res);
