@@ -10,18 +10,37 @@
 #include "lock_free_stack.h"
 #include "shared_pointer.h"
 
-#define NOWORK_CHECK 1000 // Number of solves that thread will make until the next check
+#define NOWORK_CHECK 10 // Number of solves that thread will make until the next check
 // for possiblity of waiving some computations and pushing them to the stack.
-#define NOACTIVE_CHECK 10000 // How often a thread will check if it can end.
+#define NOACTIVE_CHECK 1000 // How often a thread will check if it can end.
 
 pthread_mutex_t mutex; // Mutex for best solution.
 atomic_int occupied = 0; // Number of threads that are executing solve atm.
-Stack stack;
+_Atomic Stack stack = {0, NULL};
 int n_threads; // Number of helper threads that are used to compute the result.
 Solution best_solution;
 InputData input_data;
+pthread_mutex_t stack_mutex;
+pthread_cond_t stack_cond;
 struct timespec ts;
     
+
+Pair* pop_wait() {
+    clock_gettime(CLOCK_REALTIME, &ts);
+    ts.tv_sec += 5; 
+    ASSERT_ZERO(pthread_mutex_lock(&stack_mutex));
+    Pair* res;
+    while (!pop(&stack, &res)) ASSERT_ZERO(pthread_cond_timedwait(&stack_cond, &stack_mutex, &ts));
+    ASSERT_ZERO(pthread_mutex_unlock(&stack_mutex));
+    return res;
+}
+
+void push_signal(Shared_ptr* a, Shared_ptr* b) {
+    ASSERT_ZERO(pthread_mutex_lock(&stack_mutex));
+    push(&stack, a, b);
+    ASSERT_ZERO(pthread_cond_signal(&stack_cond));
+    ASSERT_ZERO(pthread_mutex_unlock(&stack_mutex));
+}
 
 void solve(Shared_ptr* a, Shared_ptr* b, int* check, const int* d) {
     if (a->s->sum > b->s->sum) {
@@ -44,7 +63,7 @@ void solve(Shared_ptr* a, Shared_ptr* b, int* check, const int* d) {
                 if (*check % NOWORK_CHECK == 0 && atomic_load(&occupied) < n_threads) {
                     // atomic_fetch_add(&a_i->count, 1);
                     atomic_fetch_add(&b->count, 1);
-                    push(&stack, a_i, b);
+                    push_signal(a_i, b);
                 }
                 else {
                     (*check)++;
@@ -69,8 +88,7 @@ void* start_thread(void* args) {
     while (true) {
         // Pair* p = atomic_load(&stack).head->data;
         // printf("%p", p);
-        Pair* pair;
-        pop(&stack, &pair);
+        Pair* pair = pop_wait();
         if (pair) {
             atomic_fetch_add(&occupied, 1);
             solve(pair->a, pair->b, &no_work_check, d);
@@ -94,15 +112,17 @@ int main()
     pthread_t* threads; // Array of threads.
     n_threads = input_data.t;
     Shared_ptr* a = malloc(sizeof(Shared_ptr)); Shared_ptr* b = malloc(sizeof(Shared_ptr));
-    stack_init(&stack);
+
     init_ptr(a, &input_data.a_start);
     init_ptr(b, &input_data.b_start);
     atomic_store(&a->count, input_data.d);
     atomic_store(&b->count, input_data.d);
-    push(&stack, a, b); 
+    push_signal(a, b); 
 
     solution_init(&best_solution);
     ASSERT_ZERO(pthread_mutex_init(&mutex, NULL));
+    ASSERT_ZERO(pthread_mutex_init(&stack_mutex, NULL));
+    ASSERT_ZERO(pthread_cond_init(&stack_cond, NULL));
 
     threads = malloc(sizeof(pthread_t) * n_threads);
     for (int i = 0; i < n_threads; i++) {
@@ -117,6 +137,7 @@ int main()
     free(a);
     free(b);
     ASSERT_ZERO(pthread_mutex_destroy(&mutex));
-    stack_destroy(&stack);
+    ASSERT_ZERO(pthread_mutex_destroy(&stack_mutex));
+    ASSERT_ZERO(pthread_cond_destroy(&stack_cond));
     return 0;
 }

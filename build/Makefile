@@ -169,19 +169,6 @@ nonrecursive/fast:
 .PHONY : nonrecursive/fast
 
 #=============================================================================
-# Target rules for targets named stack
-
-# Build rule for target.
-stack: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stack
-.PHONY : stack
-
-# fast build rule for target.
-stack/fast:
-	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/build
-.PHONY : stack/fast
-
-#=============================================================================
 # Target rules for targets named parallel
 
 # Build rule for target.
@@ -235,7 +222,6 @@ help:
 	@echo "... parallel"
 	@echo "... reference"
 	@echo "... shared_pointer"
-	@echo "... stack"
 .PHONY : help
 
 

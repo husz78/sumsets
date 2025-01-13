@@ -97,7 +97,6 @@ nonrecursive/nonrecursive: nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o
 nonrecursive/nonrecursive: nonrecursive/CMakeFiles/nonrecursive.dir/build.make
 nonrecursive/nonrecursive: common/libio.a
 nonrecursive/nonrecursive: common/liberr.a
-nonrecursive/nonrecursive: nonrecursive/libstack.a
 nonrecursive/nonrecursive: nonrecursive/CMakeFiles/nonrecursive.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable nonrecursive"
 	cd /home/husz/PW/ab12345/build/nonrecursive && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nonrecursive.dir/link.txt --verbose=$(VERBOSE)

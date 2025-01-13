@@ -59,7 +59,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "common/CMakeFiles/io.dir/DependInfo.cmake"
   "reference/CMakeFiles/reference.dir/DependInfo.cmake"
   "nonrecursive/CMakeFiles/nonrecursive.dir/DependInfo.cmake"
-  "nonrecursive/CMakeFiles/stack.dir/DependInfo.cmake"
   "parallel/CMakeFiles/parallel.dir/DependInfo.cmake"
   "parallel/CMakeFiles/lock_free_stack.dir/DependInfo.cmake"
   "parallel/CMakeFiles/shared_pointer.dir/DependInfo.cmake"

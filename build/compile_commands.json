@@ -19,12 +19,6 @@
 },
 {
   "directory": "/home/husz/PW/ab12345/build/nonrecursive",
-  "command": "/usr/bin/gcc  -I/home/husz/PW/ab12345 -g -std=gnu17 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-uninitialized -Wno-unused-function -Werror -pthread -o CMakeFiles/stack.dir/stack.c.o -c /home/husz/PW/ab12345/nonrecursive/stack.c",
-  "file": "/home/husz/PW/ab12345/nonrecursive/stack.c",
-  "output": "nonrecursive/CMakeFiles/stack.dir/stack.c.o"
-},
-{
-  "directory": "/home/husz/PW/ab12345/build/nonrecursive",
   "command": "/usr/bin/gcc  -I/home/husz/PW/ab12345 -g -std=gnu17 -g -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-uninitialized -Wno-unused-function -Werror -pthread -o CMakeFiles/nonrecursive.dir/main.c.o -c /home/husz/PW/ab12345/nonrecursive/main.c",
   "file": "/home/husz/PW/ab12345/nonrecursive/main.c",
   "output": "nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o"

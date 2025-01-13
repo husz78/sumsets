@@ -130,20 +130,6 @@ nonrecursive/fast:
 	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/build
 .PHONY : nonrecursive/fast
 
-# Convenience name for target.
-nonrecursive/CMakeFiles/stack.dir/rule:
-	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nonrecursive/CMakeFiles/stack.dir/rule
-.PHONY : nonrecursive/CMakeFiles/stack.dir/rule
-
-# Convenience name for target.
-stack: nonrecursive/CMakeFiles/stack.dir/rule
-.PHONY : stack
-
-# fast build rule for target.
-stack/fast:
-	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/build
-.PHONY : stack/fast
-
 main.o: main.c.o
 .PHONY : main.o
 
@@ -168,30 +154,6 @@ main.c.s:
 	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/main.c.s
 .PHONY : main.c.s
 
-stack.o: stack.c.o
-.PHONY : stack.o
-
-# target to build an object file
-stack.c.o:
-	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/stack.c.o
-.PHONY : stack.c.o
-
-stack.i: stack.c.i
-.PHONY : stack.i
-
-# target to preprocess a source file
-stack.c.i:
-	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/stack.c.i
-.PHONY : stack.c.i
-
-stack.s: stack.c.s
-.PHONY : stack.s
-
-# target to generate assembly for a file
-stack.c.s:
-	cd /home/husz/PW/ab12345/build && $(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/stack.c.s
-.PHONY : stack.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -201,13 +163,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... nonrecursive"
-	@echo "... stack"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... stack.o"
-	@echo "... stack.i"
-	@echo "... stack.s"
 .PHONY : help
 
 

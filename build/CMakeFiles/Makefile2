@@ -117,12 +117,10 @@ common/clean: common/CMakeFiles/io.dir/clean
 
 # Recursive "all" directory target.
 nonrecursive/all: nonrecursive/CMakeFiles/nonrecursive.dir/all
-nonrecursive/all: nonrecursive/CMakeFiles/stack.dir/all
 .PHONY : nonrecursive/all
 
 # Recursive "codegen" directory target.
 nonrecursive/codegen: nonrecursive/CMakeFiles/nonrecursive.dir/codegen
-nonrecursive/codegen: nonrecursive/CMakeFiles/stack.dir/codegen
 .PHONY : nonrecursive/codegen
 
 # Recursive "preinstall" directory target.
@@ -131,7 +129,6 @@ nonrecursive/preinstall:
 
 # Recursive "clean" directory target.
 nonrecursive/clean: nonrecursive/CMakeFiles/nonrecursive.dir/clean
-nonrecursive/clean: nonrecursive/CMakeFiles/stack.dir/clean
 .PHONY : nonrecursive/clean
 
 #=============================================================================
@@ -281,7 +278,6 @@ reference/CMakeFiles/reference.dir/clean:
 # All Build rule for target.
 nonrecursive/CMakeFiles/nonrecursive.dir/all: common/CMakeFiles/err.dir/all
 nonrecursive/CMakeFiles/nonrecursive.dir/all: common/CMakeFiles/io.dir/all
-nonrecursive/CMakeFiles/nonrecursive.dir/all: nonrecursive/CMakeFiles/stack.dir/all
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/depend
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=7,8 "Built target nonrecursive"
@@ -289,7 +285,7 @@ nonrecursive/CMakeFiles/nonrecursive.dir/all: nonrecursive/CMakeFiles/stack.dir/
 
 # Build rule for subdir invocation for target.
 nonrecursive/CMakeFiles/nonrecursive.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nonrecursive/CMakeFiles/nonrecursive.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 0
 .PHONY : nonrecursive/CMakeFiles/nonrecursive.dir/rule
@@ -308,38 +304,6 @@ nonrecursive/CMakeFiles/nonrecursive.dir/codegen:
 nonrecursive/CMakeFiles/nonrecursive.dir/clean:
 	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/nonrecursive.dir/build.make nonrecursive/CMakeFiles/nonrecursive.dir/clean
 .PHONY : nonrecursive/CMakeFiles/nonrecursive.dir/clean
-
-#=============================================================================
-# Target rules for target nonrecursive/CMakeFiles/stack.dir
-
-# All Build rule for target.
-nonrecursive/CMakeFiles/stack.dir/all:
-	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/depend
-	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=15,16 "Built target stack"
-.PHONY : nonrecursive/CMakeFiles/stack.dir/all
-
-# Build rule for subdir invocation for target.
-nonrecursive/CMakeFiles/stack.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nonrecursive/CMakeFiles/stack.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/husz/PW/ab12345/build/CMakeFiles 0
-.PHONY : nonrecursive/CMakeFiles/stack.dir/rule
-
-# Convenience name for target.
-stack: nonrecursive/CMakeFiles/stack.dir/rule
-.PHONY : stack
-
-# codegen rule for target.
-nonrecursive/CMakeFiles/stack.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/husz/PW/ab12345/build/CMakeFiles --progress-num=15,16 "Finished codegen for target stack"
-.PHONY : nonrecursive/CMakeFiles/stack.dir/codegen
-
-# clean rule for target.
-nonrecursive/CMakeFiles/stack.dir/clean:
-	$(MAKE) $(MAKESILENT) -f nonrecursive/CMakeFiles/stack.dir/build.make nonrecursive/CMakeFiles/stack.dir/clean
-.PHONY : nonrecursive/CMakeFiles/stack.dir/clean
 
 #=============================================================================
 # Target rules for target parallel/CMakeFiles/parallel.dir

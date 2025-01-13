@@ -2,54 +2,103 @@
 
 #include "common/io.h"
 #include "common/sumset.h"
-#include "stack.h"
-#include "common/err.h"
 #include <stdlib.h>
 
-static void solve(Sumset* a, Sumset* b, Solution* best_solution, InputData* input) {
+typedef struct Node {
+    Sumset a;
+    Sumset b;
+    int children;
+    struct Node* prev;
+} Node;
+
+typedef struct Stack {
+    Node nodes[MAX_BITS];
+    size_t top;
+} Stack;
+
+void push(Stack* s, Sumset a, Sumset b, Node* prev) {
+    s->nodes[s->top].a = a;
+    s->nodes[s->top].b = b;
+    s->nodes[s->top].prev = prev;
+    s->nodes[s->top].children = 0;
+    if (prev) prev->children++;
+    s->top++;
+}
+
+void push_one(Stack* s, Sumset b, Node* prev) {
+    s->nodes[s->top].b = b;
+    s->nodes[s->top].prev = prev;
+    s->nodes[s->top].children = 0;
+    if (prev) prev->children++;
+    s->top++;
+}
+
+Node* first_free(Stack* s) {
+    return &s->nodes[s->top];
+}
+
+Node* top(Stack* s) {
+    return &s->nodes[s->top - 1];
+}
+
+void try_pop(Stack* s, bool if_swap, bool if_push) {
+    if (s->top == 0)return;
+    Node* first = top(s);
+    if (first->children == 0 && !if_swap && !if_push) {
+        Node* prev = first->prev;
+        s->top--;
+        if (prev) prev->children--;
+        if (prev && prev == top(s)) try_pop(s, if_swap, if_push);
+    }
+}
+
+bool empty(Stack* s) {
+    return s->top == 0 ? true : false;
+}
+
+static void solve(Sumset x, Sumset y, Solution* best_solution, InputData* input) {
     Stack* s = malloc(sizeof(Stack));
-    if (!s) exit(1);
-    stack_init(s); 
-    ASSERT_SYS_OK(push(s, a, b));
-
+    push(s, x, y, NULL);
+    bool if_swap = false;
+    bool if_push = false;
     while (!empty(s)) {
-        Node* node = pop(s);
-        if (!node) exit(1);
-        Sumset* a = node->a;
-        Sumset* b = node->b;
+        Node* node = top(s);
+        if_swap = false;
+        if_push = false;
 
-        if (a->sum > b->sum) {
-            ASSERT_SYS_OK(push(s, b, a));
+        if (node->a.sum > node->b.sum) {
+            push(s, node->b, node->a, node);
+            if_swap = true;
         }
-        else if (is_sumset_intersection_trivial(a, b)) {
-            for (int i = a->last; i <= input->d; i++) {
-                if (!does_sumset_contain(b, i)) {
-                    Sumset* a_with_i = malloc(sizeof(Sumset));
-                    if (!a_with_i) exit(1);
-                    sumset_add(a_with_i, a, i);
-                    ASSERT_SYS_OK(push(s, a_with_i, b));
+        else if (is_sumset_intersection_trivial(&node->a, &node->b)) {
+            for (int i = node->a.last; i <= input->d; i++) {
+                if (!does_sumset_contain(&node->b, i)) {
+                    Node* next = first_free(s);
+                    sumset_add(&next->a, &node->a, i);
+                    push_one(s, node->b, node);
+                    if_push = true;
                 }
             }
         }
-        else if ((a->sum == b->sum) && (get_sumset_intersection_size(a, b) == 2)) {
-            if (b->sum > best_solution->sum) 
-                solution_build(best_solution, input, a, b);
+        else if ((node->a.sum == node->b.sum) && (get_sumset_intersection_size(&node->a, &node->b) == 2)) {
+            if (node->b.sum > best_solution->sum) 
+                solution_build(best_solution, input, &node->a, &node->b);
         }
+        try_pop(s, if_swap, if_push);
     }
-
-    stack_destroy(s);
+    free(s);
 }
 
 int main()
 {
     InputData input_data;
     // input_data_read(&input_data);
-    input_data_init(&input_data, 1, 20, (int[]){0}, (int[]){1, 0});
+    input_data_init(&input_data, 1, 27, (int[]){0}, (int[]){1, 0});
 
     Solution best_solution;
     solution_init(&best_solution);
 
-    solve(&input_data.a_start, &input_data.b_start, &best_solution, &input_data);
+    solve(input_data.a_start, input_data.b_start, &best_solution, &input_data);
 
     solution_print(&best_solution);
     return 0;

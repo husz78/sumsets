@@ -8,7 +8,6 @@
 /home/husz/PW/ab12345/build/reference/CMakeFiles/edit_cache.dir
 /home/husz/PW/ab12345/build/reference/CMakeFiles/rebuild_cache.dir
 /home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/nonrecursive.dir
-/home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/stack.dir
 /home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/edit_cache.dir
 /home/husz/PW/ab12345/build/nonrecursive/CMakeFiles/rebuild_cache.dir
 /home/husz/PW/ab12345/build/parallel/CMakeFiles/parallel.dir
