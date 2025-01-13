@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <string.h>
 
 #include "common/io.h"
 #include "common/sumset.h"
@@ -65,7 +66,8 @@ static void solve(Sumset x, Sumset y, Solution* best_solution, InputData* input)
         if_push = false;
 
         if (node->a.sum > node->b->sum) {
-            push(s, *node->b, &node->a, node);
+            memcpy(&s->nodes[s->top].a, node->b, sizeof(Sumset));
+            push_one(s, &node->a, node);
             if_swap = true;
         }
         else if (is_sumset_intersection_trivial(&node->a, node->b)) {
@@ -90,7 +92,7 @@ int main()
 {
     InputData input_data;
     // input_data_read(&input_data);
-    input_data_init(&input_data, 1, 27, (int[]){0}, (int[]){1, 0});
+    input_data_init(&input_data, 1, 30, (int[]){0}, (int[]){1, 0});
 
     Solution best_solution;
     solution_init(&best_solution);

@@ -13,6 +13,8 @@ nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o: /home/husz/PW/ab12345/nonrecu
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
@@ -40,9 +42,11 @@ nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o: /home/husz/PW/ab12345/nonrecu
   /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/timesize.h \
   /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
@@ -90,19 +94,13 @@ nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o: /home/husz/PW/ab12345/nonrecu
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/stdc-predef.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
@@ -126,9 +124,17 @@ nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o: /home/husz/PW/ab12345/nonrecu
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
 /usr/include/assert.h:
+
+/usr/include/strings.h:
 
 /usr/include/alloca.h:
 
@@ -147,6 +153,10 @@ nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o: /home/husz/PW/ab12345/nonrecu
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
 
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
@@ -171,6 +181,8 @@ nonrecursive/CMakeFiles/nonrecursive.dir/main.c.o: /home/husz/PW/ab12345/nonrecu
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
